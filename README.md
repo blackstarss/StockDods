@@ -24,12 +24,11 @@
 
 
 ## 設計書
-- ER図:https://app.diagrams.net/#G1lqGCPIpoZtL1XC4eYdmog-ejCv86asTs
-- テーブル設計書:https://docs.google.com/spreadsheets/d/1rvcGUG_UeqFkNMgmC0l_rzzV_QBOKMKKpHx19gXYyLA/edit#gid=1240478325
-- アプリケーション詳細設計:https://docs.google.com/spreadsheets/d/1Me5UXp0drpDdBsKSQn2rEVvOQ0U5hxwxxstVq9rLdkI/edit#gid=2133469642
+- [ER図](https://app.diagrams.net/#G1lqGCPIpoZtL1XC4eYdmog-ejCv86asTs)
+- [テーブル設計書](https://docs.google.com/spreadsheets/d/1rvcGUG_UeqFkNMgmC0l_rzzV_QBOKMKKpHx19gXYyLA/edit#gid=1240478325)
+- [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1Me5UXp0drpDdBsKSQn2rEVvOQ0U5hxwxxstVq9rLdkI/edit#gid=2133469642)
 
-## チャレンジ要素一覧
-https://docs.google.com/spreadsheets/d/1oKQga6FtqoK-wivMC0YBypGm8VT52MBMIYnnaxDT0Cc/edit#gid=2012246441
+## [チャレンジ要素一覧](https://docs.google.com/spreadsheets/d/1oKQga6FtqoK-wivMC0YBypGm8VT52MBMIYnnaxDT0Cc/edit#gid=2012246441)
 
 ## 開発環境
 - OS：Linux(CentOS)
