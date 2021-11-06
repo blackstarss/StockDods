@@ -30,7 +30,6 @@
 - AWSを使用したデプロイ(EC2,RDS)
 - ドメイン取得
 - HTTPS化
-- GitHub Actionsを使用した自動デプロイ
 - デバック(pry-byebug)
 
 ### サイトテーマ
