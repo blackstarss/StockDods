@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get 'posts/genres' => 'posts#genres', as: 'genres'
     get 'posts/searchs' => 'posts#searchs', as: 'searchs'
     get 'posts/hashtags' => 'posts#hashtags', as: 'hashtags'
+    
    
   end
   
