@@ -37,8 +37,7 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
     end
     get 'members/mypage' => 'members#show', as: 'mypage'
-    get 'members/unsubscribe' => 'members#unsubscribe', as: 'confirm_unsubscribe'
-    patch 'members/withdraw' => 'members#withdraw', as: 'withdraw_member'
+   
     get 'posts/genres' => 'posts#genres', as: 'genres'
     get 'posts/searchs' => 'posts#searchs', as: 'searchs'
     get 'posts/hashtags' => 'posts#hashtags', as: 'hashtags'

@@ -1,20 +1,25 @@
 class Member::PostsController < ApplicationController
-  
+
   def new
     @post = Post.new
   end
-  
+
   def index
     @posts = Post.all
   end
-  
+
+  def show
+    @post = Post.find(params[:id])
+    @member = @post.member
+  end
+
   def create
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     #投稿者とログインユーザをひも付ける
-    # 
+    #
     if @post.save
-      
+
       redirect_to post_path(@post.id), notice: "You have created post successfully."
     # else
     # @member = current_member
@@ -24,11 +29,27 @@ class Member::PostsController < ApplicationController
     end
   end
   
-  private
-  
-  def post_params
-    params.require(:post).permit(:title, :article, :genre, :link, :status)
+  def edit
+    @post = Post.find(params[:id])
     
   end
   
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post.id)
+    else
+      render "edit"
+    end
+  end
+
+
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :article, :genre, :link, :status)
+
+  end
+
 end
