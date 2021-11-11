@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2021_11_11_034609) do
     t.text "article"
     t.string "genre"
     t.string "link"
-    t.boolean "status"
+    t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

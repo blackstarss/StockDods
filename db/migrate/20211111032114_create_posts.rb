@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.text :article
       t.string :genre
       t.string :link
-      t.boolean :status
+      t.boolean :status, default: false
 
       t.timestamps
     end
