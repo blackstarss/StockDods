@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   
   
   
-  #顧客用
+  #利用者用
   
   get 'about' => 'homes#about'
   root :to => "homes#top"
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     sessions: 'member/sessions'
   }
   
-  scope module: :public do
+  scope module: :member do
     resources :posts do
       resource :favorites , only: [:create , :destroy]
       resources :comments, only: [:create , :destroy]
