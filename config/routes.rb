@@ -13,10 +13,13 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
   end
   
+  
+  
+  #顧客用
+  
   get 'about' => 'homes#about'
   root :to => "homes#top"
   
-  #顧客用
   devise_for :member,controllers:{
     registrations: "member/registrations",
     sessions: 'member/sessions'
