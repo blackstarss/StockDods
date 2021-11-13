@@ -38,9 +38,9 @@ Rails.application.routes.draw do
     end
     get 'members/mypage' => 'members#show', as: 'mypage'
    
-    get 'posts/genres' => 'posts#genres', as: 'genres'
-    get 'posts/searchs' => 'posts#searchs', as: 'searchs'
-    get 'posts/hashtags' => 'posts#hashtags', as: 'hashtags'
+    get 'posts/genre/:id' => 'posts#genre', as: 'genre'
+    get 'posts/searchs' => 'posts#search', as: 'search'
+    get 'posts/hashtags' => 'posts#hashtag', as: 'hashtag'
     
    
   end

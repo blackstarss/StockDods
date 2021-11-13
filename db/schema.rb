@@ -76,9 +76,9 @@ ActiveRecord::Schema.define(version: 2021_11_11_034609) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "member_id"
+    t.integer "genre_id"
     t.string "title"
     t.text "article"
-    t.string "genre"
     t.string "link"
     t.boolean "status", default: false
     t.datetime "created_at", null: false

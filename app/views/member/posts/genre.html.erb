@@ -1,0 +1,43 @@
+<div class='container'>
+   <div class='row'>
+
+       <h2><%= @genre.name %>一覧（全<%= @posts.count %>件)</h2>
+       <div class= 'd-flex align-content-stretch flex-row mb-4'>
+           <% @posts.each do |post| %>
+             <span class= "p-4">
+              <% @posts.each do |post| %>
+        <tbody>
+	  	   	<tr>
+            <td>
+            <%= post.created_at %><%= post.member.name %><br>
+            <%= post.title %><br>
+
+           <!--　　<td id="favorite_buttons_<#
+           %= post.id %>">-->
+　　        　<!--<%#= render partial: "favorites/favorite", locals: {post: post} %>-->
+　          <!--　</td>-->
+           <!--   <td>コメント数：<#%= post.post_comments.count %></td>-->
+	  	  	</tr>
+  	  	  <% end %>
+  	  	</tbody>
+             </span>
+           <% end %>
+       </div>
+    </div>
+  </div>
+  
+   <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+
+
+ <%= render 'homes/genre', genres: @genres %>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
