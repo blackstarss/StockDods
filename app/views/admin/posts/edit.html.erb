@@ -1,0 +1,32 @@
+
+　　　<div class="row">
+　　　  <label>タイトル</label>
+　　　  <%= @post.title %>
+　　　</div>
+　　　<div class="row">
+　　　  <label>ジャンル</label>
+　　　 <%= @post.genre %>
+　　　</div>
+　　　<div class="row">
+　　　  <label>本文</label>
+　　　 <%= @post.article %>
+　　　</div>
+　　　<div class="row">
+　　　  <label>引用記事リンク</label>
+　　　  <%= @post.link %>
+　　　</div>
+      <%= form_with model:@post, url: admin_post_path(@post), local:true do |f| %>
+　  　<div class="row">
+        <span class= "col-3 p-2"><%= f.label :ステータス %></span>
+          <div class="form-check">
+            <%= f.radio_button :status, false %>
+            <strong class='ture' style="color :limegreen;">表示</strong>
+            <%= f.radio_button :status, true %>
+            <strong class='false' style="color :#d3d3d3;">非表示
+          </div>
+      </div>
+
+　　　<div class="form-group-row">
+　　　  <%= f.submit class: "btn btn-success" %>
+　　　</div>
+　　　<% end %>

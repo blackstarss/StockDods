@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_11_11_034609) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.integer "post_id", null: false
+    t.integer "post_id"
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
