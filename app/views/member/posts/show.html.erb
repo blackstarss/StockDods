@@ -5,12 +5,14 @@
 　　　</div>
 　　　<div class="row">
 　　　  <label>ジャンル</label>
-　　　 <%= @post.genre %>
+　　　 <%= @post.genre.name %>
 　　　</div>
 　　　<div class="row">
 　　　  <label>本文</label>
-　　　 <%= @post.article %>
+　　　 <%== @post.article %>
+　　　 <!--エスケープ処理-->
 　　　</div>
+　　　
 　　　<div class="row">
 　　　  <label>引用記事リンク</label>
 　　　  <%= @post.link %>
