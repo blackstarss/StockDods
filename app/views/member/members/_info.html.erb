@@ -1,0 +1,28 @@
+ <h2>member Info</h2>
+ <table class="table">
+  <%= attachment_image_tag member, :image, :fill, 100, 100, format: 'jpeg'%>
+
+
+<tbody><tr></tr>
+<tr>
+<th>name<br>
+<%= member.name %></th>
+</tr>
+<tr>
+<th>biography<br>
+<%= member.biography %></th>
+</tr>
+<% if member == current_member %>　
+<div class="row">
+  <%= link_to edit_members_path(current_member), class:"btn btn-outline-secondary btn-block fas fa-member-cog" do %>
+  <% end %>
+  <% else %>
+<div class="row">
+  <%= link_to edit_members_path(member), class:"btn btn-outline-secondary btn-block fas fa-member-cog" do %>
+  
+  <% end %> 
+  <% end %> 
+
+</tbody>
+
+</table>

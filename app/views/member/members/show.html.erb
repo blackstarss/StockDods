@@ -1,0 +1,28 @@
+
+<div class="col-md-2">
+<%= render 'info', member: @member %>
+</div>
+
+  <div class="col-md-8 offset-md-1">
+
+      <h2>投稿してきた記事一覧</h2>
+       <table class="table table-hover table-inverse">
+       <% @posts.each do |post| %>
+         <tbody>
+           <tr>
+             <td>
+             <%= post.created_at %><%= post.member.name %><br>
+             <%= link_to post_path(post.id) do %><%= post.title %><% end %><br>
+
+           <!--　　<td id="favorite_buttons_<#
+           %= post.id %>">-->
+　　        　<!--<%#= render partial: "favorites/favorite", locals: {post: post} %>-->
+　          <!--　</td>-->
+           <!--   <td>コメント数：<#%= post.post_comments.count %></td>-->
+
+	  	  	 </tr>
+  	  	   <% end %>
+         </tbody>
+
+      </table>
+    </div>

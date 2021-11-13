@@ -1,0 +1,28 @@
+
+　　　<div class="row">
+　　　  <label>タイトル</label>
+　　　  <%= @post.title %>
+　　　</div>
+　　　<div class="row">
+　　　  <label>ジャンル</label>
+　　　 <%= @post.genre %>
+　　　</div>
+　　　<div class="row">
+　　　  <label>本文</label>
+　　　 <%= @post.article %>
+　　　</div>
+　　　<div class="row">
+　　　  <label>引用記事リンク</label>
+　　　  <%= @post.link %>
+　　　</div>
+
+　　　<div class="row">
+　　　  <label>ステータス</label>
+　　　  <td><% if @post.status == false %>
+	  	      <h7><strong class='ture' style="color :limegreen;">表示</strong></h7>
+	  	      <% else %>
+	  	      <h7 ><strong class='false' style="color :#d3d3d3;">非表示</strong></h7>
+	  	      <% end %>
+	  	      </td>
+　　　</div>
+      <td><%= link_to "編集", edit_admin_post_path(@post), class:"btn btn-success"%></td>

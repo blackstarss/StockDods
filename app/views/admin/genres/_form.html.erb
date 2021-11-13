@@ -1,0 +1,8 @@
+
+　<%= form_with model:genre, url:'/admin/genres', local:true do |f| %>
+　　　<div class="mb-4form-group">
+　　　  <%= f.label :ジャンル名 %>
+　　　  <%= f.text_field :name, placeholder: "ジャンル名", class:"form-control, w-25 ", style: "color: #364e96; border: solid 3px #364e96; padding: 0.5em; border-radius: 0.5em;" %>
+　　　  <%= f.submit '新規登録', class: "btn btn-success" %>
+　　　</div>
+　　　<% end %>
