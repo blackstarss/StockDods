@@ -19,15 +19,16 @@ class Member::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.member = current_member
     #投稿者とログインユーザをひも付ける
-    if @post.save
+    @post.save
+    
 
-      redirect_to post_path(@post.id), notice: "You have created post successfully."
+     redirect_to post_path(@post.id), notice: "You have created post successfully."
     # else
     # @member = current_member
     # @posts = post.all
     # render :index
   #renderはredirect_toと異なりアクションを経由せず、そのままビューを出力するので、ビューで使う変数は、renderの前にそのアクション`で定義しないといけない。 ここでは@posts=post.allアクションを定義しておく必要
-    end
+    #end
   end
 
   def edit
@@ -56,7 +57,7 @@ class Member::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :article, :genre_id, :link, :status)
+    params.require(:post).permit(:title, :article,:tags, :genre_id, :link, :status)
 
   end
 
