@@ -1,21 +1,50 @@
 
-          <h2>Book detail</h2>
-      <table class="table table-hover table-inverse">
+　　　<div class="row">
+　　　  <label>タイトル</label>
+　　　  <%= @post.title %>
+　　　</div>
+　　　<div class="row">
+　　　  <label>ジャンル</label>
+　　　 <%= @post.genre %>
+　　　</div>
+　　　<div class="row">
+　　　  <label>本文</label>
+　　　 <%= @post.article %>
+　　　</div>
+　　　<div class="row">
+　　　  <label>引用記事リンク</label>
+　　　  <%= @post.link %>
+　　　</div>
 
-        <tbody>
-	  	   	<tr>
-            <td>
-            <%= @post.created_at %><%= @post.member.name %><br>
-            <%= @post.title %><br>
+　　　  <% if @post.favorited_by?(current_member) %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :delete do %>
+        ♥<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :post do %>
+        ♡<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+<div>
+  <p>コメント件数：<%= @post.comments.count %></p>
+  <% @post.comments.each do |comment| %>
 
-           <!--　　<td id="favorite_buttons_<#
-           %= post.id %>">-->
-　　        　<!--<%#= render partial: "favorites/favorite", locals: {post: post} %>-->
-　          <!--　</td>-->
-           <!--   <td>コメント数：<#%= post.post_comments.count %></td>-->
-            <td><%= link_to "Edit", edit_post_path(@post.id), class:"btn btn-success"%></td>
-            <td><%= link_to "Destroy", post_path(@post.id), method: :delete, data: {confirm: "本当に消しますか？"}, class:"btn btn-danger" %></td>
-	  	  	</tr>
-
-  	  	</tbody>
-      </table>
+  <%= comment.member.name %>
+  <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+  <% if comment.member == current_member %>
+  <div>
+    <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+<div>
+<%= form_with(model:[@post, @comment], local: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
+</div>

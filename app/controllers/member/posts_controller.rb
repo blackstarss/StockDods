@@ -11,13 +11,13 @@ class Member::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @member = @post.member
+    @comment = Comment.new
   end
 
   def create
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     #投稿者とログインユーザをひも付ける
-    #
     if @post.save
 
       redirect_to post_path(@post.id), notice: "You have created post successfully."
