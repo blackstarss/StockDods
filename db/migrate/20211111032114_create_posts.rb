@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.integer :genre_id
       t.string :title
       t.text :article
+      t.text :tags
       t.string :link
       t.boolean :status, default: false
 

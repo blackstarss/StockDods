@@ -41,7 +41,8 @@ Rails.application.routes.draw do
     get 'posts/genre/:id' => 'posts#genre', as: 'genre'
     get 'posts/searchs' => 'posts#search', as: 'search'
     get 'posts/hashtags' => 'posts#hashtag', as: 'hashtag'
-    
+    get '/posts/hashtag/:name' => 'posts#hashtag'
+    get '/posts/hashtag' => 'posts#hashtag' 
    
   end
   

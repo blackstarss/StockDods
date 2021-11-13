@@ -8,11 +8,15 @@
 　　　 <%= @post.genre.name %>
 　　　</div>
 　　　<div class="row">
+　　　  <label>ハッシュタグ</label>
+　　　 <%= render_with_hashtags(@post.tags) %>
+　　　</div>
+　　　<div class="row">
 　　　  <label>本文</label>
 　　　 <%== @post.article %>
 　　　 <!--エスケープ処理-->
 　　　</div>
-　　　
+
 　　　<div class="row">
 　　　  <label>引用記事リンク</label>
 　　　  <%= @post.link %>

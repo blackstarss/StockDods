@@ -71,3 +71,4 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'pry-byebug'
 gem 'summernote-rails', '~> 0.8.9'
+gem 'byebug'

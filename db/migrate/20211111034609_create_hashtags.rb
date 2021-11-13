@@ -1,9 +1,10 @@
 class CreateHashtags < ActiveRecord::Migration[5.2]
   def change
     create_table :hashtags do |t|
-      t.string :name, null: false
+      t.string :name
 
       t.timestamps
     end
+    add_index :hashtags, :name, unique: true
   end
 end

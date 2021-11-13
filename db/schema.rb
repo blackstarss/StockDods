@@ -47,9 +47,10 @@ ActiveRecord::Schema.define(version: 2021_11_11_034609) do
   end
 
   create_table "hashtags", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_hashtags_on_name", unique: true
   end
 
   create_table "members", force: :cascade do |t|
@@ -68,10 +69,12 @@ ActiveRecord::Schema.define(version: 2021_11_11_034609) do
   end
 
   create_table "post_hashtags", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "hashtag_id", null: false
+    t.integer "post_id"
+    t.integer "hashtag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["hashtag_id"], name: "index_post_hashtags_on_hashtag_id"
+    t.index ["post_id"], name: "index_post_hashtags_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -79,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_11_11_034609) do
     t.integer "genre_id"
     t.string "title"
     t.text "article"
+    t.text "tags"
     t.string "link"
     t.boolean "status", default: false
     t.datetime "created_at", null: false
