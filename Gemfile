@@ -72,3 +72,8 @@ gem "refile-mini_magick"
 gem 'pry-byebug'
 gem 'summernote-rails', '~> 0.8.9'
 gem 'byebug'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
