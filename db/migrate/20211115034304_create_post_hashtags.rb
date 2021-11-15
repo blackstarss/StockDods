@@ -1,11 +1,10 @@
 class CreatePostHashtags < ActiveRecord::Migration[5.2]
   def change
     create_table :post_hashtags do |t|
-      t.bigint :post_id, limit: 20
-      t.references :hashtag, foreign_key: true
+      t.integer :post_id
+      t.integer :hashtag_id
 
       t.timestamps
     end
-    add_foreign_key :post_hashtags, :posts
   end
 end
