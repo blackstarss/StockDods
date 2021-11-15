@@ -69,12 +69,11 @@ ActiveRecord::Schema.define(version: 2021_11_15_034304) do
   end
 
   create_table "post_hashtags", force: :cascade do |t|
-    t.bigint "post_id"
+    t.bigint "post"
     t.integer "hashtag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hashtag_id"], name: "index_post_hashtags_on_hashtag_id"
-    t.index ["post_id"], name: "index_post_hashtags_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
