@@ -39,12 +39,13 @@ Rails.application.routes.draw do
     get 'members/mypage' => 'members#show', as: 'mypage'
    
     get 'posts/genre/:id' => 'posts#genre', as: 'genre'
-    get 'posts/searchs' => 'posts#search', as: 'search'
+    
     get 'posts/hashtags' => 'posts#hashtag', as: 'hashtag'
     get '/posts/hashtag/:name' => 'posts#hashtag'
     get '/posts/hashtag' => 'posts#hashtag' 
    
   end
   
+  get '/search', to: 'searches#search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

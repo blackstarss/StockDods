@@ -56,6 +56,9 @@
     <% end %>
 
     <main>
+      <% if member_signed_in? %>
+        <%= render 'layouts/search' %>
+      <% end %>
        <%= yield %>
     </main>
 
