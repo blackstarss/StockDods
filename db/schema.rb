@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2021_11_15_034304) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
+
   create_table "post_hashtags", force: :cascade do |t|
     t.bigint "post_id"
     t.integer "hashtag_id"

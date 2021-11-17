@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_hashtags
   has_many :hashtags, through: :post_hashtags
-
+  
   def favorited_by?(member)
     favorites.where(member_id: member.id).exists?
   end

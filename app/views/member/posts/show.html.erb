@@ -1,5 +1,10 @@
 
 　　　<div class="row">
+　　　  <label>投稿者</label>
+　　　  <%= link_to member_path(@member) do %><%= @post.member.name %><% end %>
+　　　</div>
+
+　　　<div class="row">
 　　　  <label>タイトル</label>
 　　　  <%= @post.title %>
 　　　</div>
@@ -21,7 +26,7 @@
 　　　  <label>引用記事リンク</label>
 　　　  <%= @post.link %>
 　　　</div>
-
+    <% if member_signed_in? %>
 　　　  <% if @post.favorited_by?(current_member) %>
     <p>
       <%= link_to post_favorites_path(@post), method: :delete do %>
@@ -54,3 +59,4 @@
   <%= f.submit "送信する" %>
 <% end %>
 </div>
+<% end %>

@@ -52,9 +52,9 @@ class Member::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
    def after_sign_up_path_for(resource)
-     mypage_path(resource)
+     member_path(current_member)
    end
-   
+
    def after_update_path_for(resource)
     mypage_path
    end

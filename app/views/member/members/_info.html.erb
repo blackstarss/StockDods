@@ -12,16 +12,16 @@
 <th>biography<br>
 <%= member.biography %></th>
 </tr>
-<% if member == current_member %>　
+<% if member == current_member %>
 <div class="row">
-  <%= link_to edit_members_path(current_member), class:"btn btn-outline-secondary btn-block fas fa-member-cog" do %>
+  <%= link_to edit_member_path(member), class:"btn btn-outline-secondary btn-block fas fa-member-cog" do %>
   <% end %>
   <% else %>
 <div class="row">
-  <%= link_to edit_members_path(member), class:"btn btn-outline-secondary btn-block fas fa-member-cog" do %>
-  
-  <% end %> 
-  <% end %> 
+  <%= link_to edit_member_path(member), class:"btn btn-outline-secondary btn-block fas fa-member-cog" do %>
+
+  <% end %>
+  <% end %>
 
 </tbody>
 
