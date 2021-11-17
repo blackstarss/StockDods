@@ -15,8 +15,9 @@
         <tbody>
 	  	   	<tr>
             <td>
-            <%= post.created_at %><%= post.member.name %><br>
-            <%= post.title %><br>
+            <%= post.created_at.strftime('%Y/%m/%d') %><%= link_to member_path(post.member) do %><%= post.member.name %><% end %><br>
+            <%= link_to post_path(post) do %><%= post.title %><% end %><br>
+
 
            <!--　　<td id="favorite_buttons_<#
            %= post.id %>">-->

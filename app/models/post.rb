@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_hashtags
   has_many :hashtags, through: :post_hashtags
-
+  
   def favorited_by?(member)
     favorites.where(member_id: member.id).exists?
   end
@@ -31,7 +31,7 @@ class Post < ApplicationRecord
 
     end
   end
-  
+
   def self.search_for(content, method)
     if method == 'perfect'
       Post.where(title: content).or(Post.where(article: content))
@@ -39,7 +39,7 @@ class Post < ApplicationRecord
       Post.where('title LIKE ?', content+'%').or(Post.where('article LIKE ?', content+'%'))
     elsif method == 'backward'
       Post.where('title LIKE ?', '%'+content).or(Post.where('article LIKE ?', '%'+content))
-    else 
+    else
       Post.where('title LIKE ?', '%'+content+'%').or(Post.where('article LIKE ?', '%'+content+'%'))
     end
   end

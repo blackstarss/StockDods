@@ -7,6 +7,7 @@ class Member::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+   
   end
 
   def show
@@ -20,7 +21,7 @@ class Member::PostsController < ApplicationController
     @post.member = current_member
     #投稿者とログインユーザをひも付ける
     @post.save
-    
+
 
      redirect_to post_path(@post.id), notice: "You have created post successfully."
     # else
@@ -51,6 +52,7 @@ class Member::PostsController < ApplicationController
     @genres = Genre.all
 
   end
+
 
 
 
