@@ -5,7 +5,7 @@
 
       <!--バリデーション-->
 
-    <%= form_with model:current_member, url: members_path, local:true do |f| %>
+    <%= form_with model:@member, url: member_path(@member), local:true do |f| %>
         <%= f.label :ユーザー名 %>
         <%= f.text_field :name, class: "form-control name" %>
         <%= f.label :Image%>

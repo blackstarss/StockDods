@@ -1,43 +1,26 @@
 <div class='container'>
-   <div class='row'>
-
+  <div class='row'>
+    <div class= "col-7 m-0 p-0 mx-auto">
        <h2><%= @genre.name %>一覧（全<%= @posts.count %>件)</h2>
-       <div class= 'd-flex align-content-stretch flex-row mb-4'>
-           <% @posts.each do |post| %>
-             <span class= "p-4">
-              <% @posts.each do |post| %>
-        <tbody>
-	  	   	<tr>
-            <td>
-            <%= post.created_at %><%= post.member.name %><br>
-            <%= post.title %><br>
-
-           <!--　　<td id="favorite_buttons_<#
-           %= post.id %>">-->
-　　        　<!--<%#= render partial: "favorites/favorite", locals: {post: post} %>-->
-　          <!--　</td>-->
-           <!--   <td>コメント数：<#%= post.post_comments.count %></td>-->
-	  	  	</tr>
-  	  	  <% end %>
-  	  	</tbody>
-             </span>
-           <% end %>
+         <table class="table table-hover ">
+        <% @posts.each do |post| %>
+          <tbody>
+	  	   	  <tr>
+              <td>
+                <%= post.created_at.strftime('%Y/%m/%d') %><%= link_to member_path(post.member) do %><%= post.member.name %><% end %><br>
+                <%= post.title %><br>
+                ♥<%= post.favorites.count %><br>
+                <%= render_with_hashtags(post.tags) %>
+              </td>
+	  	  	  </tr>
+  	  	  </tbody>
+  	  	<% end %>
+      </table>
        </div>
-    </div>
-  </div>
-  
-   <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
 
-
- <%= render 'homes/genre', genres: @genres %>
-
-
-            </ul>
-          </div>
-        </div>
+    <div class="card card float-right" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><strong>ジャンル一覧</strong></h5>
+        <p class="card-text"><%= render 'homes/genre', genres: @genres %></p>
       </div>
-  </div>
+    </div>

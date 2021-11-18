@@ -2,21 +2,20 @@ class Member::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    
     @posts = @member.posts
+    @genres = Genre.all
 
   end
 
-
-
-
   def edit
+    @member = Member.find(params[:id])
 
   end
 
   def update
+     @member = Member.find(params[:id])
     if current_member.update(member_params)
-      redirect_to mypage_path, notice: '会員情報の更新が完了しました。'
+      redirect_to member_path(@member), notice: '会員情報の更新が完了しました。'
     else
       render :edit
     end

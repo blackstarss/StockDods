@@ -3,7 +3,7 @@
   <%= attachment_image_tag member, :image, :fill, 100, 100, format: 'jpeg'%>
 
 
-<tbody><tr></tr>
+<tbody>
 <tr>
 <th>name<br>
 <%= member.name %></th>
@@ -12,16 +12,18 @@
 <th>biography<br>
 <%= member.biography %></th>
 </tr>
-<% if member == current_member %>
-<div class="row">
-  <%= link_to edit_member_path(member), class:"btn btn-outline-secondary btn-block fas fa-member-cog" do %>
+<% if member.id == current_member.id %>
+<tr>
+  <%= link_to edit_member_path(member), class:"btn btn-outline-secondary btn-block fas fa-user" do %>
   <% end %>
+</tr>
   <% else %>
-<div class="row">
-  <%= link_to edit_member_path(member), class:"btn btn-outline-secondary btn-block fas fa-member-cog" do %>
+<tr>
+  <%= link_to member_path(current_member), class:"btn btn-outline-secondary btn-block fas fa-user" do %>
 
   <% end %>
   <% end %>
+</tr>
 
 </tbody>
 
