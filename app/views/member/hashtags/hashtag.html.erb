@@ -9,7 +9,7 @@
     </div>
     <% end%>
 
-    <div class= "col-7 m-0 p-0 mx-auto">
+    <div class= "col-6 m-0 p-0 mx-auto">
     <h2>投稿一覧</h2>
       <table class="table table-hover ">
         <% @posts.each do |post| %>
@@ -26,10 +26,10 @@
   	  	<% end %>
       </table>
     </div>
-    
+
     <div class="col-2 card card float-right" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title"><strong>ジャンル一覧</strong></h5>
+        <h5 class="card-title"><strong>ジャンル</strong></h5>
         <p class="card-text"><%= render 'homes/genre', genres: @genres %></p>
       </div>
     </div>

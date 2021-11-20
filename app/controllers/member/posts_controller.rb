@@ -52,6 +52,7 @@ class Member::PostsController < ApplicationController
     @genre = Genre.find(params[:id])
     @posts = @genre.posts
     @genres = Genre.all
+    @member =current_member
 
   end
 
