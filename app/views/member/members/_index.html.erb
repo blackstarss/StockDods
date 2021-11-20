@@ -9,7 +9,7 @@
           <%= render_with_hashtags(post.tags) %>
         </td>
         <% if post.member.id == current_member.id %>
-        <td><%= link_to "Edit", edit_post_path(post), class:"btn btn-success float-right" %></td>
+        <td><%= link_to "編集", edit_post_path(post), class:"btn btn-success float-right" %></td>
         <% end %>
 	   </tr>
     </tbody>
