@@ -1,30 +1,26 @@
- <h2>member Info</h2>
- <table class="table">
-  <%= attachment_image_tag member, :image, :fill, 100, 100, format: 'jpeg'%>
+ <h2 class='text-center'>Member Info</h2>
+  <table class="table">
+    <div class="text-center">
+      <%= attachment_image_tag member, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+    </div>
 
-
-<tbody>
-<tr>
-<th>name<br>
-<%= member.name %></th>
-</tr>
-<tr>
-<th>biography<br>
-<%= member.biography %></th>
-</tr>
-<% if member.id == current_member.id %>
-<tr>
-  <%= link_to edit_member_path(member), class:"btn btn-outline-secondary btn-block fas fa-user" do %>
-  <% end %>
-</tr>
-  <% else %>
-<tr>
-  <%= link_to member_path(current_member), class:"btn btn-outline-secondary btn-block fas fa-user" do %>
-
-  <% end %>
-  <% end %>
-</tr>
-
-</tbody>
-
-</table>
+    <tbody>
+      <tr>
+        <th>メンバー<br>
+        <%= member.name %></th>
+      </tr>
+      <tr>
+        <th>自己紹介<br>
+        <%= member.biography %></th>
+      </tr>
+      <% if member.id == current_member.id %>
+      <tr>
+        <%= link_to edit_member_path(member), class:"btn btn-outline-secondary btn-block fas fa-user mt-3" do %><% end %>
+      </tr>
+      <% else %>
+      <tr>
+        <%= link_to member_path(current_member), class:"btn btn-outline-secondary btn-block fas fa-user mt-3" do %><% end %>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>

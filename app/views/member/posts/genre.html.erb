@@ -1,16 +1,15 @@
-<div class='container'>
+<div class='container mt-5'>
   <div class='row'>
      <% if member_signed_in? %>
     <div class="col-3 card card float-right" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title"><strong>Member</strong></h5>
         <p class="card-text"><%= render 'member/members/info', member: @member %></p>
       </div>
     </div>
     <% end%>
 
     <div class= "col-6 m-0 p-0 mx-auto">
-       <h2><%= @genre.name %>一覧（全<%= @posts.count %>件)</h2>
+       <h2>"<%= @genre.name %>"一覧（全<%= @posts.count %>件)</h2>
          <table class="table table-hover ">
         <% @posts.each do |post| %>
           <tbody>

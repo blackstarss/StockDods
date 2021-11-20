@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h2>User info </h2>
+    <h2>Member Info </h2>
 
       <!--バリデーション-->
 
     <%= form_with model:@member, url: member_path(@member), local:true do |f| %>
-        <%= f.label :ユーザー名 %>
+        <%= f.label :メンバー名 %>
         <%= f.text_field :name, class: "form-control name" %>
-        <%= f.label :Image%>
-        <%= f.attachment_field :image, class:"form-control-file user_image" %>
-        <%= f.label :introduction %>
-        <%= f.text_area :biography, class:"form-control introduction" %><br>
+        <%= f.label :Image, class:'mt-2' %>
+        <%= f.attachment_field :image, class:"form-control-file member_image" %>
+        <%= f.label :自己紹介, class:'mt-2' %>
+        <%= f.text_area :biography, class:"form-control introduction " %><br>
       <div class="form-group">
         <%= f.submit " Update Member", class:"btn btn-secondary" %>
      <% end %>

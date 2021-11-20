@@ -48,6 +48,12 @@ class Member::PostsController < ApplicationController
     end
   end
 
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to member_path(current_member)
+  end
+
   def genre
     @genre = Genre.find(params[:id])
     @posts = @genre.posts

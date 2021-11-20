@@ -1,18 +1,17 @@
-   <div class="container px-5 px-sm-0">
+<div class="container mt-5">
   <div class="row">
     <% if member_signed_in? %>
     <div class="col-3 card card float-right" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title"><strong>Member</strong></h5>
         <p class="card-text"><%= render 'member/members/info', member: @member, post: @post %></p>
       </div>
     </div>
     <% end%>
 
     <div class= "col-6 m-0 p-0 mx-auto">
-    <h2>投稿一覧</h2>
-      <table class="table table-hover ">
-        <% @posts.each do |post| %>
+    　<h2>ハッシュタグ検索</h2>
+        <table class="table table-hover ">
+          <% @posts.each do |post| %>
           <tbody>
 	  	   	  <tr>
               <td>
@@ -21,6 +20,9 @@
                 ♥<%= post.favorites.count %><br>
                 <%= render_with_hashtags(post.tags) %>
               </td>
+              <% if post.member.id == current_member.id %>
+            　<td><%= link_to "Edit", edit_post_path(post), class:"btn btn-success float-right" %></td>
+            　<% end %>
 	  	  	  </tr>
   	  	  </tbody>
   	  	<% end %>
@@ -34,4 +36,4 @@
       </div>
     </div>
   </div>
-  </div>
+</div>

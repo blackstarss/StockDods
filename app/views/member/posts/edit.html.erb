@@ -1,5 +1,8 @@
-<div class="container px-5 px-sm-0">
+<div class="container px-5 px-sm-0 mt-5">
   <div class="row">
-<%= render 'form', post: @post, genres: @genres %>
+    <%= render 'form', post: @post, genres: @genres %>
   </div>
+    <div class='col-2 offset-md-9'>
+      <%= link_to "記事を削除する", post_path(@post), method: :delete, data: {confirm: "本当に記事を消しますか？"}, class:"btn btn-danger float-right" %>
+   </div>
 </div>
