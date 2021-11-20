@@ -15,8 +15,8 @@
          <% if member_signed_in? %>
            <p class="text col-2" style="color :limegreen;">ようこそ、<%= current_member.name %>さん!</p>
          <% end %>
-         <div class='col-1'>
-           <%= link_to root_path do %><%= image_tag 'logo-s.jpg', class:"logo" %><% end %>
+         <div class='col-2'>
+           <%= link_to root_path do %> <h2 class='text-light'>StockDots</h2><% end %>
          </div>
         <div class="container">
 
@@ -59,6 +59,17 @@
     <main>
        <%= yield %>
     </main>
+
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <%= image_tag 'logo-s.jpg', class:"logo" %>
+            <p class='text-center'>© 2021 Kota Suzuki</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
 
   </body>

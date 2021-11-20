@@ -1,7 +1,8 @@
 class HomesController < ApplicationController
   def top
-    @posts = Post.all
+    @posts = Post.where(status: false)
     @genres = Genre.all
+
 
   end
 end

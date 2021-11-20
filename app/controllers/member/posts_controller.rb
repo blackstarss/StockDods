@@ -6,7 +6,7 @@ class Member::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.where(status: false)
     @member =current_member
     @genres = Genre.all
 
@@ -56,7 +56,7 @@ class Member::PostsController < ApplicationController
 
   def genre
     @genre = Genre.find(params[:id])
-    @posts = @genre.posts
+    @posts = @genre.posts.where(status: false)
     @genres = Genre.all
     @member =current_member
 

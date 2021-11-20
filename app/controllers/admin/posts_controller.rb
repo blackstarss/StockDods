@@ -2,14 +2,17 @@ class Admin::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @member = Member.find(params)
   end
 
   def show
     @post = Post.find(params[:id])
+    @member = @post.member
   end
 
   def edit
     @post = Post.find(params[:id])
+    @genres = Genre.all
   end
 
   def update

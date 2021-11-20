@@ -2,7 +2,7 @@ class Member::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    @posts = @member.posts
+    @posts = @member.posts.where(status: false)
     @genres = Genre.all
 
   end
