@@ -1,62 +1,64 @@
+<div class="container px-5 px-sm-0 mt-5">
 
-　　　<div class="row">
-　　　  <label>投稿者</label>
-　　　  <%= link_to member_path(@member) do %><%= @post.member.name %><% end %>
-　　　</div>
+  <div class="row">
+    <label class="col-2"><strong>投稿者</strong></label>
+    <%= link_to member_path(@member) do %><%= @post.member.name %><% end %>
+  </div>
 
-　　　<div class="row">
-　　　  <label>タイトル</label>
-　　　  <%= @post.title %>
-　　　</div>
-　　　<div class="row">
-　　　  <label>ジャンル</label>
-　　　 <%= @post.genre.name %>
-　　　</div>
-　　　<div class="row">
-　　　  <label>ハッシュタグ</label>
-　　　 <%= render_with_hashtags(@post.tags) %>
-　　　</div>
-　　　<div class="row">
-　　　  <label>本文</label>
-　　　 <%== @post.article %>
-　　　 <!--エスケープ処理-->
-　　　</div>
+  <div class="row mt-3">
+    <label class="col-2"><strong>タイトル</strong></label>
+    <%= @post.title %>
+  </div>
+  <div class="row mt-3">
+    <label class="col-2"><strong>ジャンル</strong></label>
+   <%= @post.genre.name %>
+  </div>
+  <div class="row mt-3">
+    <label class="col-2"><strong>ハッシュタグ</strong></label>
+   <%= render_with_hashtags(@post.tags) %>
+  </div>
+  <div class="row mt-3">
+    <label class="col-2"><strong>本文</strong></label>
+   <%== @post.article %>
+   <!--エスケープ処理-->
+  </div>
 
-　　　<div class="row">
-　　　  <label>引用記事リンク</label>
-　　　  <%= @post.link %>
-　　　</div>
-    <% if member_signed_in? %>
-　　　  <% if @post.favorited_by?(current_member) %>
+  <div class="row mt-3">
+    <label class="col-2"><strong>引用記事リンク</strong></label>
+    <%= @post.link %>
+  </div>
+  <% if member_signed_in? %>
+　<% if @post.favorited_by?(current_member) %>
     <p>
       <%= link_to post_favorites_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
+      ♥<%= @post.favorites.count %> いいね
       <% end %>
     </p>
-    <% else %>
+  <% else %>
     <p>
       <%= link_to post_favorites_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
+      ♡<%= @post.favorites.count %> いいね
       <% end %>
     </p>
   <% end %>
-<div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-
-  <%= comment.member.name %>
-  <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-  <% if comment.member == current_member %>
+  <div>
+    <p>コメント件数：<%= @post.comments.count %></p>
+    <% @post.comments.each do |comment| %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %> <%= comment.member.name %><br>
+    <%= comment.comment %>
+    <% if comment.member == current_member %>
   <div>
     <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
   </div>
+    <% end %>
   <% end %>
+  </div>
+  <div>
+    <%= form_with(model:[@post, @comment], local: true) do |f| %>
+      <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", size: "100x5" %>
+      <%= f.submit "送信する", class: "btn btn-success"  %>
+    <% end %>
+  </div>
   <% end %>
+
 </div>
-<div>
-<%= form_with(model:[@post, @comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
-</div>
-<% end %>

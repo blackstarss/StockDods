@@ -1,41 +1,43 @@
-<div class= "container">
+<div class= "container text-center mt-5">
   <div class="row">
 
 
   </div>
-   <h2>StackDodsへようこそ</h2>
+   <h2>StockDodsへようこそ</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "member/shared/error_messages", resource: resource %>
 
-     <div class="d-flex form-group">
-         <span class= "col-3 p-2"><%= f.label :ユーザー名, class:'name' %></span>
+     <div class="d-flex form-group mt-4">
+         <span class= "col-3 p-2 offset-md-3 "><%= f.label :ユーザー名, class:'name' %></span>
          <span class= "col-3 m-2"><%= f.text_field :name, autofocus: true, placeholder: "name", class: "form-control" %></span>
      </div>
 
      <div class="d-flex form-group">
-        <span class= "col-3 p-2"><%= f.label :メールアドレス %></span>
+        <span class= "col-3 p-2 offset-md-3"><%= f.label :メールアドレス %></span>
         <span class= "col-3 m-2"><%= f.text_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %></span>
      </div>
 
      <div class="d-flex form-group">
-         <span class= "col-3 p-2"><%= f.label :"パスワード(6文字以上)" %></span>
+         <span class= "col-3 p-2 offset-md-3"><%= f.label :"パスワード(6文字以上)" %></span>
          <span class= "col-3 m-2"><% if @minimum_password_length %>
           <% end %>
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></span>
      </div>
 
      <div class="d-flex form-group">
-         <span class= "col-3 p-2"><%= f.label :"パスワード(確認用)" %></span>
+         <span class= "col-3 p-2 offset-md-3"><%= f.label :"パスワード(確認用)" %></span>
          <span class= "col-3 m-2"><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></span>
      </div>
-      <div class="actions">
-          <%= f.submit "新規登録", class: "touroku btn btn-success btn-lg " %>
+      <div class="actions offset-md-6">
+          <%= f.submit "新規登録", class: "touroku btn btn-success btn-lg" %>
       </div>
   <% end %>
 
 
 
+<div class='offset-md-6 mt-3'>
+ <%= render "member/shared/links" %>
+</div>
 
-<%= render "member/shared/links" %>
 </div>

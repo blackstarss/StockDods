@@ -10,50 +10,52 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-        <% if admin_signed_in? %>
-      <header class="admin_header">
-        <div class="header-content">
-          <%= link_to 'StockDods', admin_top_path, class: "logo" %>
-          <ul class="flex">
-            <li><%= link_to '商品一覧', admin_items_path %></li>
-            <li><%= link_to '会員一覧', admin_members_path %></li>
-            <li><%= link_to '注文履歴一覧', admin_orders_path %></li>
-            <li><%= link_to 'ジャンル管理', admin_genres_path %></li>
-            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-          </ul>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <% if member_signed_in? %>
+         <p class=text style="color :limegreen;">ようこそ、<%= current_member.name %>さん!</p>
+         <% end %>
+        <div class="container">
+
+          <%= link_to root_path, class:"navbar-brand" do %>
+          <%= image_tag 'logo-s.jpg' %>
+          <% end %>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <li><%= link_to '商品一覧', admin_items_path%></li>
+		            <li><%= link_to '会員一覧', admin_members_path %></li>
+		            <li><%= link_to '注文履歴一覧', admin_orders_path %></li>
+		            <li><%= link_to 'ジャンル管理', admin_genres_path %></li>
+		            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+              <% elsif member_signed_in? %>
+
+		       	    <li><%= link_to 'マイページ', member_path(current_member),class:"fas fa-user" %></li>
+			          <li><%= link_to '新規投稿', new_post_path,class:"fas fa-star" %></li>
+			          <li><%= link_to '投稿一覧', posts_path,class:"fas fa-list" %></li>
+			          <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete,class:"fas fa-sign-out-alt" %></li>
+			        <% else %>
+			          <li><%= link_to 'About', about_path,class:"fas fa-info-circle" %></li>
+	              <li><%= link_to '投稿一覧', posts_path,class:"fas fa-list" %></li>
+	              <li><%= link_to '新規登録', new_member_registration_path,class:"fas fa-user-plus" %></li>
+	              <li><%= link_to 'ログイン', new_member_session_path,class:"fas fa-sign-in-alt" %></li>
+	            <% end %>
+
+	      	    <%= render 'layouts/search' %>
+            </ul>
+          </div>
         </div>
-      </header>
-      <% elsif member_signed_in? %>
-      <header>
-        <div class="header-content">
-          <%= link_to 'StockDods', root_path, class: "logo" %>
-          <ul class="lists-right">
-            <p>ようこそ、<%= current_member.name %>さん!</p>
-            <li><%= link_to 'マイページ', member_path(current_member) %></li>
-            <li><%= link_to '新規投稿', new_post_path %></li>
-            <li><%= link_to '投稿一覧', posts_path %></li>
-            <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete %></li>
-          </ul>
-        </div>
-      </header>
-      <% else %>
-      <header>
-        <div class="header-content">
-          <%= link_to 'StockDods', root_path, class: "logo" %>
-          <ul class="flex">
-            <li><%= link_to 'About', about_path %></li>
-            <li><%= link_to '投稿一覧', posts_path %></li>
-            <li><%= link_to '新規登録', new_member_registration_path %></li>
-            <li><%= link_to 'ログイン', new_member_session_path %></li>
-          </ul>
-        </div>
-      </header>
-      <% end %>
+      </nav>
+    </header>
+
 
     <main>
-      <% if member_signed_in? %>
-        <%= render 'layouts/search' %>
-      <% end %>
        <%= yield %>
     </main>
 

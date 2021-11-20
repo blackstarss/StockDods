@@ -1,30 +1,43 @@
-   <h2>posts</h2>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th> </th>
-            <th></th>
-            <th>
+   <div class="container mt-5">
+  <div class="row">
+    <% if member_signed_in? %>
+    <div class="col-3 card card float-right" style="width: 18rem;">
+      <div class="card-body">
+        <p class="card-text"><%= render 'member/members/info', member: @member, post: @post %></p>
+      </div>
+    </div>
+    <% end%>
 
-            </th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-          <% @posts.each do |post| %>
-        <tbody>
-	  	   	<tr>
-            <td>
-            <%= post.created_at.strftime('%Y/%m/%d') %><%= link_to member_path(post.member) do %><%= post.member.name %><% end %><br>
-            <%= link_to post_path(post) do %><%= post.title %><% end %><br>
-
-
-           <!--　　<td id="favorite_buttons_<#
-           %= post.id %>">-->
-　　        　<!--<%#= render partial: "favorites/favorite", locals: {post: post} %>-->
-　          <!--　</td>-->
-           <!--   <td>コメント数：<#%= post.post_comments.count %></td>-->
-	  	  	</tr>
-  	  	  <% end %>
-  	  	</tbody>
+    <div class= "col-6 m-0 p-0 mx-auto">
+    <h2>投稿一覧</h2>
+      <table class="table table-hover">
+        <% @posts.each do |post| %>
+          <tbody>
+	  	   	  <tr>
+              <td>
+                <%= post.created_at.strftime('%Y/%m/%d') %><%= link_to member_path(post.member) do %> <%= post.member.name %><% end %><br>
+                <%= link_to post_path(post.id) do %><%= post.title %><% end %><br>
+                ♥<%= post.favorites.count %><br>
+                <%= render_with_hashtags(post.tags) %>
+                <% if member_signed_in? %>
+                <% if post.member.id == current_member.id %>
+                  <td><%= link_to "Edit", edit_post_path(post), class:"btn btn-success float-right"%></td>
+                <% else %>
+                  <td></td>
+                <% end %>
+                <% end %>
+              </td>
+	  	  	  </tr>
+  	  	  </tbody>
+  	  	<% end %>
       </table>
+    </div>
+
+    <div class="col-2 card card float-right" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><strong>ジャンル</strong></h5>
+        <p class="card-text"><%= render 'homes/genre', genres: @genres %></p>
+      </div>
+    </div>
+  </div>
+  </div>

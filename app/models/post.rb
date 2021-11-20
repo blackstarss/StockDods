@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_hashtags
   has_many :hashtags, through: :post_hashtags
-  
+
   def favorited_by?(member)
     favorites.where(member_id: member.id).exists?
   end
@@ -24,7 +24,7 @@ class Post < ApplicationRecord
   before_update do
     post = Post.find_by(id: self.id)
     post.hashtags.clear
-    hashtags = hashtags.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    hashtags = tags.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
     tag = Hashtag.find_or_create_by(name: hashtag.downcase.delete('#'))
     post.hashtags << tag

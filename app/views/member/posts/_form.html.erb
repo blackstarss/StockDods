@@ -1,23 +1,23 @@
 <%= form_with model:post, local:true do |f| %>
-　　　<div class="form-group row">
-　　　  <label>タイトル</label>
-　　　  <%= f.text_field :title, placeholder: "タイトル", class:"form-control w-25 " %>
+　　　<div class="d-flex form-group">
+　　　  <span class= "col-2 "><strong><%= f.label :タイトル, class:'title' %></strong></span>
+　　　  <span class= "title_form col-8 p-0"><%= f.text_field :title, placeholder: "タイトル", class:"form-control" %></span>
 　　　</div>
-　　　<div class="form-group row">
-　　　  <label>ジャンル</label>
-　　　  <%= f.collection_select :genre_id, genres, :id, :name, include_blank: "-- 選択して下さい --" %>
-　　　  <label>ハッシュタグ</label>
-　　　  <%= f.text_field :tags, placeholder: "#５つ以内でお願いします", size:"55x3" %>
+　　　<div class="d-flex form-group float-left mt-3">
+　　　  <span class= "col-2"><strong><%= f.label :ジャンル, class:'genre' %></strong></span>
+　　　  <span class= "col-3"><%= f.collection_select :genre_id, genres, :id, :name, include_blank: "-- 選択して下さい --" %></span>
+　　　  <span class= "col-2 p-0"><strong><%= f.label :ハッシュタグ, class:'hashtag' %></strong></span>
+　　　  <span class= "col-5"><%= f.text_field :tags, placeholder: "15字以内　例)#数学 #英語",size:"30x3" %></span>
 　　　</div>
-
-　　　  <label>本文</label>
-　　　  <%= f.text_area :article, placeholder: "＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃", 'data-provider': :summernote %>
+　　　<div class='form-group-article'>
+　　　  <span class= "col-2 offset-md-1"><%= f.label :　, class:'article' %></span>
+　　　  <span class= "col-5"><%= f.text_area :article, 'data-provider': :summernote %>
 　　　</div>
-　　　<div class="form-group row">
-　　　  <label>引用記事リンク</label>
-　　　  <%= f.text_field :link, placeholder: "リンク", class:"form-control w-25 " %>
+　　　<div class="d-flex form-group">
+　　　  <span class= "col-2 "><strong><%= f.label :引用記事リンク, class:'link' %></strong></span>
+　　　  <%= f.text_area :link, placeholder: "リンク",size:"100x3" %>
 　　　</div>
-　　　<div class="form-group-row">
-　　　  <%= f.submit class: "btn btn-success" %>
+　　　<div class="form-group">
+　　　  <%= f.submit class: "btn btn-success float-right" %>
 　　　</div>
 　　　<% end %>

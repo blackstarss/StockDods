@@ -1,13 +1,12 @@
 class SearchesController < ApplicationController
-  
+
   def search
+    @member = current_member
+    @genres = Genre.all
     @model = params[:model]
     @content = params[:content]
     @method = params[:method]
-    if @model == 'member'
-      @records = Member.search_for(@content, @method)
-    else
-      @records = Post.search_for(@content, @method)
-    end
+    @records = Post.search_for(@content, @method)
+    
   end
 end
