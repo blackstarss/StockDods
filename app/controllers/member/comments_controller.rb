@@ -1,15 +1,19 @@
 class Member::CommentsController < ApplicationController
 
   def create
-    post = Post.find(params[:post_id])
-    comment = current_member.comments.new(comment_params)
-    comment.post_id = post.id
-    comment.save
-    redirect_to post_path(post)  end
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new(comment_params)
+    @comment.post_id = @post.id
+    @comment.member_id = current_member.id
+    @comment.save
+    # 非同期通信のためredirect_to削除
+  end
 
   def destroy
-    Comment.find_by(id: params[:id]).destroy
-    redirect_to post_path(params[:post_id])
+    @post = Post.find(params[:post_id])
+    comment = @post.comments.find(params[:id])
+    comment.destroy
+    # 非同期通信のためredirect_to削除
   end
 
   private

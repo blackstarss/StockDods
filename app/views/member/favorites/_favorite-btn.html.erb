@@ -1,0 +1,15 @@
+<% if post.favorited_by?(current_member) %>
+    <p class='favorite'>
+      <%= link_to post_favorites_path(post), method: :delete, remote: true do %>
+      いいね<i class="fas fa-heart" style="color :#FF0033;"></i>
+      <% end %>
+      <%= post.favorites.count %>
+    </p>
+  <% else %>
+    <p class='favorite'>
+      <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+      いいね<i class="far fa-heart" style="color :#FF0033;"></i>
+      <% end %>
+      <%= post.favorites.count %>
+    </p>
+  <% end %>

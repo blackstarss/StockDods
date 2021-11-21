@@ -1,4 +1,4 @@
-<%= form_with model:post, local:true do |f| %>
+    <%= form_with model:post, local:true do |f| %>
 　　　<div class="d-flex form-group">
 　　　  <span class= "col-2 "><strong><%= f.label :タイトル, class:'title' %></strong></span>
 　　　  <span class= "title_form col-8 p-0"><%= f.text_field :title, placeholder: "タイトル", class:"form-control" %></span>
@@ -20,4 +20,4 @@
 　　　<div class="form-group">
 　　　  <%= f.submit class: "btn btn-success float-right" %>
 　　　</div>
-　　　<% end %>
+　　<% end %>

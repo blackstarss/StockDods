@@ -9,7 +9,7 @@
             <td>
               <%= post.created_at.strftime('%Y/%m/%d') %>に投稿 <%= post.member.name %><br>
               <%= link_to admin_post_path(post.id) do %><strong><%= post.title %></strong><% end %><br>
-              ♥<%= post.favorites.count %><br>
+              <i class="fas fa-heart" style="color :#FF0033;"></i><%= post.favorites.count %><br>
               コメント数：<%= Comment.count %>
             </td>
             <td><%= link_to "編集", edit_admin_post_path(post), class:"btn btn-success float-right" %>
