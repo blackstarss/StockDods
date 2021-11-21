@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>StockDods</title>
+    <title>StockDots</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,13 +13,14 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <% if member_signed_in? %>
-         <p class=text style="color :limegreen;">ようこそ、<%= current_member.name %>さん!</p>
+           <p class="text col-2" style="color :limegreen;">ようこそ、<%= current_member.name %>さん!</p>
          <% end %>
+         <div class='col-2'>
+           <%= link_to root_path do %> <h2 class='text-light'>StockDots</h2><% end %>
+         </div>
         <div class="container">
 
-          <%= link_to root_path, class:"navbar-brand" do %>
-          <%= image_tag 'logo-s.jpg' %>
-          <% end %>
+
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,25 +30,25 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
-                <li><%= link_to '商品一覧', admin_items_path%></li>
-		            <li><%= link_to '会員一覧', admin_members_path %></li>
-		            <li><%= link_to '注文履歴一覧', admin_orders_path %></li>
-		            <li><%= link_to 'ジャンル管理', admin_genres_path %></li>
-		            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+                <li class="list"><%= link_to '商品一覧', admin_items_path %></li>
+		            <li class="list"><%= link_to '会員一覧', admin_members_path %></li>
+		            <li class="list"><%= link_to '注文履歴一覧', admin_orders_path %></li>
+		            <li class="list"><%= link_to 'ジャンル管理', admin_genres_path %></li>
+		            <li class="list"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
               <% elsif member_signed_in? %>
 
-		       	    <li><%= link_to 'マイページ', member_path(current_member),class:"fas fa-user" %></li>
-			          <li><%= link_to '新規投稿', new_post_path,class:"fas fa-star" %></li>
-			          <li><%= link_to '投稿一覧', posts_path,class:"fas fa-list" %></li>
-			          <li><%= link_to 'ログアウト', destroy_member_session_path, method: :delete,class:"fas fa-sign-out-alt" %></li>
+		       	    <li class="list"><%= link_to 'マイページ', member_path(current_member),class:"fas fa-user text-light" %></li>
+			          <li class="list"><%= link_to '新規投稿', new_post_path,class:"fas fa-star text-light" %></li>
+			          <li class="list"><%= link_to '投稿一覧', posts_path,class:"fas fa-list text-light" %></li>
+			          <li class="list"><%= link_to 'ログアウト', destroy_member_session_path, method: :delete,class:"fas fa-sign-out-alt text-light" %></li>
 			        <% else %>
-			          <li><%= link_to 'About', about_path,class:"fas fa-info-circle" %></li>
-	              <li><%= link_to '投稿一覧', posts_path,class:"fas fa-list" %></li>
-	              <li><%= link_to '新規登録', new_member_registration_path,class:"fas fa-user-plus" %></li>
-	              <li><%= link_to 'ログイン', new_member_session_path,class:"fas fa-sign-in-alt" %></li>
+			          <li class="list"><%= link_to 'About', about_path,class:"fas fa-info-circle text-light" %></li>
+	              <li class="list"><%= link_to '投稿一覧', posts_path,class:"fas fa-list text-light" %></li>
+	              <li class="list"><%= link_to '新規登録', new_member_registration_path,class:"fas fa-user-plus text-light" %></li>
+	              <li class="list"><%= link_to 'ログイン', new_member_session_path,class:"fas fa-sign-in-alt text-light" %></li>
 	            <% end %>
 
-	      	    <%= render 'layouts/search' %>
+	      	    <li class="list"><%= render 'layouts/search' %></li>
             </ul>
           </div>
         </div>
@@ -58,6 +59,17 @@
     <main>
        <%= yield %>
     </main>
+
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <%= image_tag 'logo-s.jpg', class:"logo" %>
+            <p class='text-center'>© 2021 Kota Suzuki</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
 
   </body>

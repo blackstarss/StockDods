@@ -15,9 +15,9 @@
           <tbody>
 	  	   	  <tr>
               <td>
-                <%= post.created_at.strftime('%Y/%m/%d') %><%= link_to member_path(post.member) do %> <%= post.member.name %><% end %><br>
-                <%= link_to post_path(post.id) do %><%= post.title %><% end %><br>
-                ♥<%= post.favorites.count %><br>
+                <%= post.created_at.strftime('%Y/%m/%d') %>に投稿<%= link_to member_path(post.member) do %> <%= post.member.name %><% end %><br>
+                <%= link_to post_path(post.id) do %><strong><%= post.title %></strong><% end %><br>
+                <i class="fas fa-heart" style="color :#FF0033;"></i><%= post.favorites.count %><br>
                 <%= render_with_hashtags(post.tags) %>
                 <% if member_signed_in? %>
                 <% if post.member.id == current_member.id %>

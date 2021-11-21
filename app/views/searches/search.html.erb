@@ -1,23 +1,21 @@
 <div class="container px-5 px-sm-0 mt-5">
   <div class="row">
     <% if member_signed_in? %>
-    <div class="col-3 card card float-right" style="width: 18rem;">
-      <div class="card-body">
-        <p class="card-text"><%= render 'member/members/info', member: @member %></p>
+      <div class="col-3 card card float-right" style="width: 18rem;">
+        <div class="card-body">
+          <p class="card-text"><%= render 'member/members/info', member: @member %></p>
+        </div>
       </div>
-    </div>
     <% end%>
     <div class="col-6 m-0 p-0 mx-auto">
-    <% if @model == 'member' %>
-  	  <h3>Members search for "<%= @content %>"</h3>
-      <%= render 'member/members/index', posts: @records %>
+      <h3>"<%= @content %>"の検索結果</h3>
+        <% if @model == 'member' %>
+  	    <%= render 'member/members/index', posts: @records %>
+  	    <% elsif @model == 'post' %>
+        <%= render 'member/posts/index', posts: @records %>
+        <% end %>
     </div>
-    <div class="col-6 m-0 p-0 mx-auto">
-    <% elsif @model == 'post' %>
-	    <h3>Posts search for "<%= @content %>"</h3>
-      <%= render 'member/posts/index', posts: @records %>
-    <% end %>
-    </div>
+
     <div class="col-2 card card float-right" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title"><strong>ジャンル</strong></h5>
