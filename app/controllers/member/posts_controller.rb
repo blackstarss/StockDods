@@ -1,4 +1,9 @@
 class Member::PostsController < ApplicationController
+
+  load_and_authorize_resource
+  before_action :authenticate_member!
+  before_action :ensure_correct_member, { only: [:edit, :update, :destroy] }
+
   def new
     @post = Post.new
     @genres = Genre.all
@@ -62,5 +67,12 @@ class Member::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :article, :tags, :genre_id, :link, :status)
+  end
+
+  def ensure_correct_member
+    @post = Post.find(params[:id])
+    unless @post.member == current_member
+      redirect_to posts_path
+    end
   end
 end
