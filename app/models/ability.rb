@@ -5,9 +5,12 @@ class Ability
 
   def initialize(member)
     # Define abilities for the passed in user here. For example:
+
        member ||= Member.new  # ログインしていない場合は、からユーザーを用意し判定に用いる
       if member.id?
         can :manage, Post
+      else
+        cannot [:update, :destroy], Post
       end
     #
     # The first argument to `can` is the action you are giving the user
