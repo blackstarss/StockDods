@@ -1,4 +1,5 @@
 <div class="container pt-3">
+<%= render "devise/shared/error_messages", resource: @post %>
   <div class="row">
 <%= render 'form', post: @post, genres: @genres %>
   </div>

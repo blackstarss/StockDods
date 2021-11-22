@@ -6,6 +6,11 @@ class Post < ApplicationRecord
   has_many :post_hashtags
   has_many :hashtags, through: :post_hashtags
 
+  validates :title, :article, :tags, :genre, presence: true
+  validates :tags,  length: { maximum: 15 }
+  validates :title,    length: { maximum: 200 } 
+
+
   def favorited_by?(member)
     favorites.where(member_id: member.id).exists?
   end

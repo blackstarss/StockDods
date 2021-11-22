@@ -30,11 +30,11 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if admin_signed_in? %>
-                <li class="list"><%= link_to '商品一覧', admin_items_path %></li>
-		            <li class="list"><%= link_to '会員一覧', admin_members_path %></li>
-		            <li class="list"><%= link_to '注文履歴一覧', admin_orders_path %></li>
-		            <li class="list"><%= link_to 'ジャンル管理', admin_genres_path %></li>
-		            <li class="list"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+                <li class="list"><%= link_to 'メンバー一覧', admin_path,class:"fas fa-user text-light" %></li>
+			          <li class="list"><%= link_to 'ジャンル一覧', admin_genres_path,class:"fas fa-star text-light" %></li>
+			          <li class="list"><%= link_to '投稿一覧', admin_posts_path,class:"fas fa-list text-light" %></li>
+			          <li class="list"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete,class:"fas fa-sign-out-alt text-light" %></li>
+
               <% elsif member_signed_in? %>
 
 		       	    <li class="list"><%= link_to 'マイページ', member_path(current_member),class:"fas fa-user text-light" %></li>
