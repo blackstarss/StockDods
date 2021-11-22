@@ -1,4 +1,4 @@
- <p class=>コメント件数：<%= @post.comments.count %></p>
+ <p class=><strong>コメント件数：<%= @post.comments.count %></strong></p>
  <% post.comments.each do |comment| %>
     <%= comment.created_at.strftime('%Y/%m/%d') %> <%= comment.member.name %><br>
     <%= comment.comment %>

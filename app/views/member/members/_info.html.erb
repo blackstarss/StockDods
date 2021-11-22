@@ -5,6 +5,11 @@
     </div>
 
     <tbody>
+     <% if member.id == current_member.id %>
+      <tr>
+        <%= link_to edit_member_path(member), class:"btn btn-outline-secondary btn-block fas fa-user mt-3" do %><% end %>
+      </tr>
+      <% end %>
       <tr>
         <th>メンバー<br>
         <%= member.name %></th>
@@ -13,14 +18,22 @@
         <th>自己紹介<br>
         <%= member.biography %></th>
       </tr>
-      <% if member.id == current_member.id %>
       <tr>
-        <%= link_to edit_member_path(member), class:"btn btn-outline-secondary btn-block fas fa-user mt-3" do %><% end %>
+        <td><strong>フォロー数: <%= member.followings.count %></strong></td>
       </tr>
-      <% else %>
       <tr>
-        <%= link_to member_path(current_member), class:"btn btn-outline-secondary btn-block fas fa-user mt-3" do %><% end %>
-      <% end %>
+        <td><strong>フォロワー数: <%= member.followers.count %></strong></td>
       </tr>
+        <td>
+          <% if current_member != member %>
+            <% if current_member.following?(member) %>
+              <%= link_to "フォロー外す", member_relationship_path(member.id), method: :delete, class:"btn btn-outline-danger btn-block fas fa-member mt-3" %>
+            <% else %>
+              <%= link_to "フォローする", member_relationships_path(member.id), method: :post, class:"btn btn-outline-primary btn-block fas fa-member mt-3" %>
+            <% end %>
+          <% end %>
+        </td>
+
+
     </tbody>
   </table>

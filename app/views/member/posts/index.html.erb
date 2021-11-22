@@ -15,7 +15,8 @@
           <tbody>
 	  	   	  <tr>
               <td>
-                <%= post.created_at.strftime('%Y/%m/%d') %>に投稿<%= link_to member_path(post.member) do %> <%= post.member.name %><% end %><br>
+                <%= post.created_at.strftime('%Y/%m/%d') %>に投稿<%= link_to member_path(post.member) do %> <%= post.member.name %><% end %>
+                フォロー数: <%= post.member.followings.count %> フォロワー数: <%= post.member.followers.count %><br>
                 <%= link_to post_path(post.id) do %><strong><%= post.title %></strong><% end %><br>
                 <i class="fas fa-heart" style="color :#FF0033;"></i><%= post.favorites.count %><br>
                 <%= render_with_hashtags(post.tags) %>
