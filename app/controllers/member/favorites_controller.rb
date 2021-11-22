@@ -1,5 +1,4 @@
 class Member::FavoritesController < ApplicationController
-
   def create
     @post = Post.find(params[:post_id])
     # js.erbファイルに渡す変数

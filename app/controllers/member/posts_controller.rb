@@ -1,5 +1,4 @@
 class Member::PostsController < ApplicationController
-
   def new
     @post = Post.new
     @genres = Genre.all
@@ -7,9 +6,8 @@ class Member::PostsController < ApplicationController
 
   def index
     @posts = Post.where(status: false)
-    @member =current_member
+    @member = current_member
     @genres = Genre.all
-
   end
 
   def show
@@ -21,17 +19,16 @@ class Member::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.member = current_member
-    #投稿者とログインユーザをひも付ける
+    # 投稿者とログインユーザをひも付ける
     @post.save
 
-
-     redirect_to post_path(@post.id), notice: "You have created post successfully."
+    redirect_to post_path(@post.id), notice: "You have created post successfully."
     # else
     # @member = current_member
     # @posts = post.all
     # render :index
-  #renderはredirect_toと異なりアクションを経由せず、そのままビューを出力するので、ビューで使う変数は、renderの前にそのアクション`で定義しないといけない。 ここでは@posts=post.allアクションを定義しておく必要
-    #end
+    # renderはredirect_toと異なりアクションを経由せず、そのままビューを出力するので、ビューで使う変数は、renderの前にそのアクション`で定義しないといけない。 ここでは@posts=post.allアクションを定義しておく必要
+    # end
   end
 
   def edit
@@ -58,18 +55,12 @@ class Member::PostsController < ApplicationController
     @genre = Genre.find(params[:id])
     @posts = @genre.posts.where(status: false)
     @genres = Genre.all
-    @member =current_member
-
+    @member = current_member
   end
-
-
-
 
   private
 
   def post_params
     params.require(:post).permit(:title, :article, :tags, :genre_id, :link, :status)
-
   end
-
 end
