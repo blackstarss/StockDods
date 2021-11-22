@@ -43,7 +43,7 @@
   <div>
     <%= form_with(model:[@post, @comment], remote: true) do |f| %>
       <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", size: "100x5" %>
-      <%= f.submit "送信する", class: "btn btn-success"  %>
+      <%= f.submit "投稿する", class: "btn btn-success"  %>
     <% end %>
   </div>
   <% end %>
