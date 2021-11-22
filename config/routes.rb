@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-
-  #管理者用
-  devise_for :admin,controllers:{
-    sessions: 'admin/sessions'
+  # 管理者用
+  devise_for :admin, controllers: {
+    sessions: 'admin/sessions',
   }
   namespace :admin do
     get '/' => 'homes#top', as: '/'
@@ -11,23 +10,23 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
   end
 
-  #利用者用
+  # 利用者用
 
   get 'about' => 'homes#about'
   root :to => "homes#top"
 
-  devise_for :member,controllers:{
+  devise_for :member, controllers: {
     registrations: "member/registrations",
-    sessions: 'member/sessions'
+    sessions: 'member/sessions',
   }
 
   scope module: :member do
     resources :posts do
-      resource :favorites , only: [:create , :destroy]
-      resources :comments, only: [:create , :destroy]
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
 
-    resources :members,only: [:show, :edit, :update] do
+    resources :members, only: [:show, :edit, :update] do
       resources :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
@@ -38,7 +37,6 @@ Rails.application.routes.draw do
     get 'posts/hashtags' => 'posts#hashtag', as: 'hashtag'
     get '/hashtags/hashtag/:name' => 'hashtags#hashtag'
     get '/posts/hashtag' => 'posts#hashtag'
-
   end
 
   get '/search', to: 'searches#search'

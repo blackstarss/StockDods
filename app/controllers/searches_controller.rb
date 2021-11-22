@@ -1,5 +1,4 @@
 class SearchesController < ApplicationController
-
   def search
     @member = current_member
     @genres = Genre.all
@@ -7,6 +6,5 @@ class SearchesController < ApplicationController
     @content = params[:content]
     @method = params[:method]
     @records = Post.search_for(@content, @method).where(status: false)
-    
   end
 end

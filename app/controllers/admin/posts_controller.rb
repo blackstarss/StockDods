@@ -1,8 +1,6 @@
 class Admin::PostsController < ApplicationController
-
   def index
     @posts = Post.all
-
   end
 
   def show
@@ -24,7 +22,7 @@ class Admin::PostsController < ApplicationController
 
   private
 
-    def post_params
-      params.require(:post).permit(:status)
-    end
+  def post_params
+    params.require(:post).permit(:status)
+  end
 end
