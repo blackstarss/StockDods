@@ -1,4 +1,9 @@
 class Member::PostsController < ApplicationController
+
+
+
+  before_action :ensure_correct_member, { only: [:edit, :update, :destroy] }
+
   def new
     @post = Post.new
     @genres = Genre.all
@@ -20,19 +25,15 @@ class Member::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.member = current_member
     # 投稿者とログインユーザをひも付ける
-    @post.save
-
-    redirect_to post_path(@post.id), notice: "You have created post successfully."
-    # else
-    # @member = current_member
-    # @posts = post.all
-    # render :index
-    # renderはredirect_toと異なりアクションを経由せず、そのままビューを出力するので、ビューで使う変数は、renderの前にそのアクション`で定義しないといけない。 ここでは@posts=post.allアクションを定義しておく必要
-    # end
+    if @post.save
+      redirect_to post_path(@post.id), notice: "You have created post successfully."
+    else
+      @genres = Genre.all
+      render "new"
+    end
   end
 
   def edit
-    @post = Post.find(params[:id])
     @genres = Genre.all
   end
 
@@ -41,6 +42,8 @@ class Member::PostsController < ApplicationController
     if post.update(post_params)
       redirect_to post_path(post.id)
     else
+      @post = Post.find(params[:id])
+      @genres = Genre.all
       render "edit"
     end
   end
@@ -62,5 +65,12 @@ class Member::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :article, :tags, :genre_id, :link, :status)
+  end
+
+  def ensure_correct_member
+    @post = Post.find(params[:id])
+    unless @post.member == current_member
+      redirect_to posts_path
+    end
   end
 end

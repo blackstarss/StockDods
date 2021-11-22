@@ -31,10 +31,13 @@
 
   <div class="row mt-3">
     <% if member_signed_in? %>
+
     <label class="col-2"></label>
+    <% if current_member != @member %>
     <div id="post_<%= @post.id %>">
 　    <%= render "member/favorites/favorite-btn", post: @post %>
     </div>
+    <% end %>
   </div>
 
   <div class='comments'>
