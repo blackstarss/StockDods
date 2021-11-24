@@ -3,6 +3,8 @@
     <%= f.text_field :content %>
     <%= f.select :model, options_for_select({ "投稿記事" => "post","メンバー" => "member" }) %>
     <%= f.select :method, options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
-    <%= f.submit '検索' %>
+    <%= button_tag :type => "submit", :class =>"btn btn-default btn-s-md" do %>
+  <i class="fas fa-search" style="color :white;"></i>
+<% end %>
   <% end %>
 </div>
