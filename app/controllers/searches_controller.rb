@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+  
   def search
     @member = current_member
     @genres = Genre.all
