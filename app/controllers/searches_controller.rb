@@ -6,6 +6,6 @@ class SearchesController < ApplicationController
     @model = params[:model]
     @content = params[:content]
     @method = params[:method]
-    @records = Post.search_for(@content, @method).where(status: false)
+    @records = Post.search_for(@content, @method).where(status: false).page(params[:page]).reverse_order
   end
 end

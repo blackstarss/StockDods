@@ -2,7 +2,7 @@ class Member::MembersController < ApplicationController
   
   def show
     @member = Member.find(params[:id])
-    @posts = @member.posts.where(status: false)
+    @posts = @member.posts.where(status: false).page(params[:page]).reverse_order
     @genres = Genre.all
   end
 

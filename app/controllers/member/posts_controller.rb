@@ -8,7 +8,7 @@ class Member::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(status: false)
+    @posts = Post.where(status: false).page(params[:page]).reverse_order
     @member = current_member
     @genres = Genre.all
   end
@@ -54,7 +54,7 @@ class Member::PostsController < ApplicationController
 
   def genre
     @genre = Genre.find(params[:id])
-    @posts = @genre.posts.where(status: false)
+    @posts = @genre.posts.where(status: false).page(params[:page]).reverse_order
     @genres = Genre.all
     @member = current_member
   end
