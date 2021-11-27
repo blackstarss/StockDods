@@ -17,7 +17,8 @@ class Admin::PostsController < ApplicationController
   end
 
   def update
-    @member = Member.find(params[:id])
+    @post = Post.find(params[:id])
+    @member = @post.member
     post = Post.find(params[:id])
     if post.update(post_params)
       redirect_to admin_member_path(@member)
