@@ -19,8 +19,13 @@ class Admin::PostsController < ApplicationController
   def update
     @member = Member.find(params[:id])
     post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to admin_member_path(@member)
+    if post.update(post_params)
+      redirect_to admin_member_path(@member)
+    else
+      @post = Post.find(params[:id])
+      @genres = Genre.all
+      render "edit"
+    end
   end
 
   private
