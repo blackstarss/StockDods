@@ -24,7 +24,6 @@
 - rubocop-airbnbを利用
 - AWSを使用したデプロイ(EC2,RDS)
 - ドメイン取得
-- HTTPS化
 - デバック(pry-byebug,pry-rails)
 - cancancanを利用した権限管理
 
