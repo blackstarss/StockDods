@@ -8,10 +8,9 @@
   	  	  <% @members.each do |member| %>
 	  	  	<tr>
 	  	  	  <td><%= member.name %></td>
-
+	  	  	  <td> 投稿数：<%= member.posts.count %></td>
 	      	  <td>フォロー数: <%= member.followings.count %></td>
             <td>フォロワー数: <%= member.followers.count %></td>
-
 	  	  	  <td><%= link_to "詳細", "/members/#{member.id}", class:"btn btn-success float-right" %></td>
 	  	  	</tr>
   	  	  <% end %>
