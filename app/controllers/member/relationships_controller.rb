@@ -13,11 +13,13 @@ class Member::RelationshipsController < ApplicationController
   # ————————フォロー・フォロワー一覧を表示する-————————————
   def followings
     member = Member.find(params[:member_id])
-    @members = member.followings
+    @members = member.followings.page(params[:page]).reverse_order
+    @genres = Genre.all
   end
 
   def followers
     member = Member.find(params[:member_id])
-    @members = member.followers
+    @members = member.followers.page(params[:page]).reverse_order
+    @genres = Genre.all
   end
 end
