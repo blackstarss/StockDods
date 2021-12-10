@@ -8,7 +8,15 @@ class Member::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(status: false).page(params[:page]).reverse_order
+    to  = Time.current.at_end_of_day
+    from  = (to - 6.day).at_beginning_of_day
+    posts = Post.where(status: false).includes(:favorites).
+      sort {|a,b|
+        b.favorites.includes(:favorites).where(created_at: from...to).size <=>
+        a.favorites.includes(:favorites).where(created_at: from...to).size
+      }
+    @posts = Kaminari.paginate_array(posts).page(params[:page])
+
     @member = current_member
     @genres = Genre.all
   end

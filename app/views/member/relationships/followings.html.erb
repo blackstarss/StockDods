@@ -1,28 +1,36 @@
-
-<div class="col-md-8 offset-md-1">
-  <h2>Follow members</h2>
-<% if @members.exists? %>
-
- 
-   <table class="table">
-
+<div class="container mt-5 ">
+  <div class="row">
+    <div class= "col-8 m-0 p-0 mx-auto">
+      <h2>フォローメンバー</h2>
+      <% if @members.exists? %>
+      <table class="table table-hover">
   	  	<tbody>
   	  	  <% @members.each do |member| %>
 	  	  	<tr>
 	  	  	  <td><%= member.name %></td>
-	  	  	  
+	  	  	  <td> 投稿数：<%= member.posts.count %></td>
 	      	  <td>フォロー数: <%= member.followings.count %></td>
             <td>フォロワー数: <%= member.followers.count %></td>
-      
-	  	  	  <td><%= link_to "Show", "/members/#{member.id}" %></td>
+	  	  	  <td><%= link_to "詳細", "/members/#{member.id}", class:"btn btn-success float-right" %></td>
 	  	  	</tr>
   	  	  <% end %>
   	  	</tbody>
   	  </table>
-  	
+  	  <div class='kaminari '>
+      <%= paginate @members %>
+      </div>
+
+
 <% else %>
-  <p>ユーザーはいません</p>
+  <p>メンバーはいません</p>
 <% end %>
+    </div>
 
-
+    <div class="col-2 card card float-right" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><strong>ジャンル</strong></h5>
+        <p class="card-text"><%= render 'homes/genre', genres: @genres %></p>
+      </div>
+    </div>
+  </div>
 </div>

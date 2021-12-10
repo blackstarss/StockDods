@@ -1,4 +1,4 @@
-   <div class="container mt-5">
+<div class="container mt-5">
   <div class="row">
     <% if member_signed_in? %>
     <div class="col-3 card card float-right" style="width: 18rem;">
@@ -22,7 +22,7 @@
                 <%= render_with_hashtags(post.tags) %>
                 <% if member_signed_in? %>
                 <% if post.member.id == current_member.id %>
-                  <td><%= link_to "Edit", edit_post_path(post), class:"btn btn-success float-right"%></td>
+                  <td><%= link_to "Edit", edit_post_path(post), class:"btn btn-success float-right" %></td>
                 <% else %>
                   <td></td>
                 <% end %>

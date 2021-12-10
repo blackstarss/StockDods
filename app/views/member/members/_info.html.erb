@@ -19,10 +19,10 @@
         <%= member.biography %></th>
       </tr>
       <tr>
-        <td><strong>フォロー数: <%= member.followings.count %></strong></td>
+        <td><%= link_to member_followings_path(member) do %><strong>フォロー数: <%= member.followings.count %></strong><% end %></td>
       </tr>
       <tr>
-        <td><strong>フォロワー数: <%= member.followers.count %></strong></td>
+        <td><%= link_to member_followers_path(member) do %><strong>フォロワー数: <%= member.followers.count %></strong><% end %></td>
       </tr>
         <td>
           <% if current_member != member %>
