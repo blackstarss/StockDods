@@ -20,9 +20,19 @@
               <i class="fas fa-heart" style="color :#FF0033;"></i><%= post.favorites.count %><br>
               <%= render_with_hashtags(post.tags) %>
             </td>
+            <td>
+              <% if post.member.id == current_member.id %>
+              <% if post.status == false %>
+	  	    　    <strong class='ture' style="color :limegreen;">表示中</strong>
+	  	    　  <% else %>
+	  	    　    <strong class='false' style="color :#d3d3d3;">現在表示できません</strong>
+	  	    　  <% end %>
+	  	    　  <% end %>
+	  	    　</td>
+            </td>
             <% if member_signed_in? %>
             <% if post.member.id == current_member.id %>
-            <td><%= link_to "Edit", edit_post_path(post), class:"btn btn-success float-right" %></td>
+              <td><%= link_to "Edit", edit_post_path(post), class:"btn btn-success float-right" %></td>
             <% end %>
             <% end %>
 	  	    </tr>
