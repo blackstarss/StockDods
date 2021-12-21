@@ -102,6 +102,47 @@ describe '[STEP1] ユーザログイン前のテスト' do
       end
     end
   end
+  describe 'ユーザ新規登録のテスト' do
+    before do
+      visit new_member_registration_path
+    end
 
+    context '表示内容の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/member/sign_up'
+      end
+      it 'nameフォームが表示される' do
+        expect(page).to have_field 'member[name]'
+      end
+      it 'emailフォームが表示される' do
+        expect(page).to have_field 'member[email]'
+      end
+      it 'passwordフォームが表示される' do
+        expect(page).to have_field 'member[password]'
+      end
+      it 'password_confirmationフォームが表示される' do
+        expect(page).to have_field 'member[password_confirmation]'
+      end
+      it '新規登録ボタンが表示される' do
+        expect(page).to have_button '新規登録'
+      end
+    end
+      context '新規登録成功のテスト' do
+      before do
+        fill_in 'member[name]', with: Faker::Lorem.characters(number: 10)
+        fill_in 'member[email]', with: Faker::Internet.email
+        fill_in 'member[password]', with: 'password'
+        fill_in 'member[password_confirmation]', with: 'password'
+      end
 
+      it '正しく新規登録される' do
+        expect { click_button '新規登録' }.to change(Member.all, :count).by(1)
+      end
+      it '新規登録後のリダイレクト先が、新規登録できたユーザの詳細画面になっている' do
+        click_button '新規登録'
+        expect(current_path).to eq '/members/' + Member.last.id.to_s
+      end
+    end
+    
+end
 end
