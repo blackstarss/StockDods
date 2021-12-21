@@ -143,6 +143,87 @@ describe '[STEP1] ユーザログイン前のテスト' do
         expect(current_path).to eq '/members/' + Member.last.id.to_s
       end
     end
+  end
     
-end
+    describe 'ユーザログイン' do
+    let(:member) { create(:member) }
+
+    before do
+      visit new_member_session_path
+    end
+
+    context '表示内容の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/member/sign_in'
+      end
+      it 'emailフォームが表示される' do
+        expect(page).to have_field 'member[email]'
+      end
+      it 'passwordフォームが表示される' do
+        expect(page).to have_field 'member[password]'
+      end
+      it 'ログインボタンが表示される' do
+        expect(page).to have_button 'ログイン'
+      end
+      it 'nameフォームは表示されない' do
+        expect(page).not_to have_field 'member[name]'
+      end
+    end
+  end
+   describe 'ヘッダーのテスト: ログインしている場合' do
+    let(:member) { create(:member) }
+
+    before do
+      visit new_member_session_path
+      fill_in 'member[email]', with: member.email
+      fill_in 'member[password]', with: member.password
+      click_button 'ログイン'
+    end
+
+    context 'ヘッダーの表示を確認' do
+      it 'StockDotsリンクが表示される: 左上から1番目のリンクが「StockDots」である' do
+        home_link = find_all('a')[0].native.inner_text
+        expect(home_link).to match(/StockDots/)
+      end
+      it 'マイページリンクが表示される: 左上から2番目のリンクが「マイページ」である' do
+        mypage_link = find_all('a')[1].native.inner_text
+        expect(mypage_link).to match(/マイページ/)
+      end
+      it '新規投稿リンクが表示される: 左上から3番目のリンクが「新規投稿」である' do
+        new_link = find_all('a')[2].native.inner_text
+        expect(new_link).to match(/新規投稿/)
+      end
+      it '投稿一覧リンクが表示される: 左上から4番目のリンクが「投稿一覧」である' do
+        books_link = find_all('a')[3].native.inner_text
+        expect(books_link).to match(/投稿一覧/)
+      end
+      it 'ログアウトリンクが表示される: 左上から5番目のリンクが「ログアウト」である' do
+        logout_link = find_all('a')[4].native.inner_text
+        expect(logout_link).to match(/ログアウト/)
+      end
+    end
+  end
+
+  describe 'ユーザログアウトのテスト' do
+    let(:member) { create(:member) }
+
+    before do
+      visit new_member_session_path
+      fill_in 'member[email]', with: member.email
+      fill_in 'member[password]', with: member.password
+      click_button 'ログイン'
+      logout_link = find_all('a')[4].native.inner_text
+      logout_link = logout_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+      click_link logout_link
+    end
+
+    context 'ログアウト機能のテスト' do
+      it '正しくログアウトできている: ログアウト後のリダイレクト先においてAbout画面へのリンクが存在する' do
+        expect(page).to have_link '', href: '/about'
+      end
+      it 'ログアウト後のリダイレクト先が、トップになっている' do
+        expect(current_path).to eq '/'
+      end
+    end
+  end
 end
