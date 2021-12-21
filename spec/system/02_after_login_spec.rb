@@ -10,7 +10,7 @@ describe '[STEP2] ユーザログイン後のテスト' do
     fill_in 'member[password]', with: member.password
     click_button 'ログイン'
   end
-  
+
   describe 'ヘッダーのテスト: ログインしている場合' do
     context 'リンクの内容を確認: ※logoutは『ユーザログアウトのテスト』でテスト済みになります。' do
       subject { current_path }
@@ -44,6 +44,7 @@ describe '投稿一覧画面のテスト' do
       before do
         fill_in 'post[title]', with: Faker::Lorem.characters(number: 5)
         fill_in 'post[tags]', with: "#薬学"
+    
         fill_in 'post[link]', with: Faker::Lorem.characters(number: 5)
         fill_in 'post[article]', with: Faker::Lorem.characters(number:30)
       end
