@@ -21,11 +21,13 @@
               <%= render_with_hashtags(post.tags) %>
             </td>
             <td>
+              <% if member_signed_in? %>
               <% if post.member.id == current_member.id %>
               <% if post.status == false %>
 	  	    　    <strong class='ture' style="color :limegreen;">公開中</strong>
 	  	    　  <% else %>
 	  	    　    <strong class='false' style="color :#d3d3d3;">現在公開されていません</strong>
+	  	    　  <% end %>
 	  	    　  <% end %>
 	  	    　  <% end %>
 	  	    　</td>
